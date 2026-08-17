@@ -1,0 +1,21 @@
+#include <stdio.h>
+
+int main() {
+    printf("++++++++++++++++++++++++++++++++++++++++++\n");
+    printf("+                                        +\n");
+    printf("+         HELLO, WELCOME TO              +\n");
+    printf("+    -- COMPUTER PROGRAMMING 1 --        +\n");
+    printf("+                                        +\n");
+    printf("++++++++++++++++++++++++++++++++++++++++++\n");
+    printf("+                                        +\n");
+    printf("+   >> CODE                              +\n");
+    printf("+   >> TEST                              +\n");
+    printf("+   >> DEPLOY                            +\n");
+    printf("+                                        +\n");
+    printf("++++++++++++++++++++++++++++++++++++++++++\n");
+    printf("+           Everyone has to              +\n");
+    printf("+           Start Somewhere.             +\n");
+    printf("++++++++++++++++++++++++++++++++++++++++++\n");
+
+    return 0;
+}
