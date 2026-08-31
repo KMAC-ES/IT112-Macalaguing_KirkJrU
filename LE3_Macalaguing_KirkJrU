@@ -1,0 +1,37 @@
+#include <stdio.h>
+#include <string.h>
+
+int main() {
+    char fullName[100];
+    char section[50];
+    float num1, num2;
+
+    printf("Enter Complete Name: ");
+    fgets(fullName, sizeof(fullName), stdin);
+    fullName[strcspn(fullName, "\n")] = '\0';
+
+    printf("Enter Section: ");
+    fgets(section, sizeof(section), stdin);
+    section[strcspn(section, "\n")] = '\0';
+
+    printf("\nEnter first number: ");
+    scanf("%f", &num1);
+
+    printf("Enter second number: ");
+    scanf("%f", &num2);
+
+    printf("\n Student Calculator\n");
+    printf("Student name: %s\n", fullName);
+    printf("Section: %s\n", section);
+    printf(" Results:\n");
+    printf("%.0f + %.0f = %.0f\n", num1, num2, num1 + num2);
+    printf("%.0f - %.0f = %.0f\n", num1, num2, num1 - num2);
+    printf("%.0f * %.0f = %.0f\n", num1, num2, num1 * num2);
+
+    if (num2 != 0)
+        printf("%.0f / %.0f = %.2f\n", num1, num2, num1 / num2);
+    else
+        printf("%.0f / %.0f = undefined (cannot divide by zero)\n", num1, num2);
+
+    return 0;
+}
