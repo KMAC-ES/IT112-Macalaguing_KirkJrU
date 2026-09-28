@@ -1,0 +1,95 @@
+#include <stdio.h>
+ 
+void displayHeader(void);
+void displayMenu(void);
+double addition(double a, double b);
+double subtraction(double a, double b);
+double multiplication(double a, double b);
+double division(double a, double b);
+ 
+int main(void)
+{
+    double num1, num2;
+    int choice;
+ 
+    do
+    {
+        displayHeader();
+ 
+        printf("\nEnter first number: ");
+        scanf("%lf", &num1);
+        printf("Enter second number: ");
+        scanf("%lf", &num2);
+ 
+        displayMenu();
+ 
+        printf("\nEnter choice [1-5]: ");
+        scanf("%d", &choice);
+        printf("\n");
+ 
+        switch (choice)
+        {
+            case 1:
+                printf("%g + %g = %g\n", num1, num2, addition(num1, num2));
+                break;
+            case 2:
+                printf("%g - %g = %g\n", num1, num2, subtraction(num1, num2));
+                break;
+            case 3:
+                printf("%g * %g = %g\n", num1, num2, multiplication(num1, num2));
+                break;
+            case 4:
+                if (num2 == 0)
+                    printf("Error: Cannot divide by zero.\n");
+                else
+                    printf("%g / %g = %.2f\n", num1, num2, division(num1, num2));
+                break;
+            case 5:
+                printf("Exiting program ...\n");
+                break;
+            default:
+                printf("Invalid choice. Please enter 1-5.\n");
+        }
+ 
+        if (choice != 5)
+            printf("\n");
+ 
+    } while (choice != 5);
+ 
+    return 0;
+}
+ 
+void displayHeader(void)
+{
+    printf("Multiple functions to perform Arithmetic Operations\n");
+}
+ 
+void displayMenu(void)
+{
+    printf("\nChoose Operation:\n");
+    printf("[1] Addition\n");
+    printf("[2] Subtraction\n");
+    printf("[3] Multiplication\n");
+    printf("[4] Division\n");
+    printf("[5] Exit Program\n");
+}
+ 
+double addition(double a, double b)
+{
+    return a + b;
+}
+ 
+double subtraction(double a, double b)
+{
+    return a - b;
+}
+ 
+double multiplication(double a, double b)
+{
+    return a * b;
+}
+ 
+double division(double a, double b)
+{
+    return a / b;
+}
