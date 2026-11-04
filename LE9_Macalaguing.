@@ -1,0 +1,89 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+#define FILENAME "student_records.txt"
+#define MAX_LEN  100
+
+static void readLine(char *buffer, int size)
+{
+    if (fgets(buffer, size, stdin) != NULL)
+    {
+        buffer[strcspn(buffer, "\n")] = '\0';
+    }
+    else
+    {
+        buffer[0] = '\0';
+    }
+}
+
+int main(void)
+{
+    FILE *fp;
+    int count, i;
+    char name[MAX_LEN];
+    char age[MAX_LEN];
+    char course[MAX_LEN];
+    char line[256];
+    char numBuf[MAX_LEN];
+
+    /* ---------- WRITING ---------- */
+    printf("Writing Student Database:\n");
+    printf("How many students do you want to record? ");
+    readLine(numBuf, sizeof(numBuf));
+    count = atoi(numBuf);
+
+    if (count <= 0)
+    {
+        printf("Invalid number of students.\n");
+        return 1;
+    }
+
+    fp = fopen(FILENAME, "w");
+    if (fp == NULL)
+    {
+        printf("Error: could not open %s for writing.\n", FILENAME);
+        return 1;
+    }
+
+    for (i = 1; i <= count; i++)
+    {
+        printf("\nStudent %d\n", i);
+
+        printf("Enter Name: ");
+        readLine(name, sizeof(name));
+
+        printf("Enter Age: ");
+        readLine(age, sizeof(age));
+
+        printf("Enter Course: ");
+        readLine(course, sizeof(course));
+
+        fprintf(fp, "Student %d\n", i);
+        fprintf(fp, "Name: %s\n", name);
+        fprintf(fp, "Age: %s\n", age);
+        fprintf(fp, "Course: %s\n", course);
+        fprintf(fp, "____________________\n\n");
+    }
+
+    fclose(fp);
+    printf("\nStudent database successfully saved to file.\n");
+
+    fp = fopen(FILENAME, "r");
+    if (fp == NULL)
+    {
+        printf("Error: could not open %s for reading.\n", FILENAME);
+        return 1;
+    }
+
+    printf("\nReading Student Database:\n\n");
+
+    while (fgets(line, sizeof(line), fp) != NULL)
+    {
+        printf("%s", line);
+    }
+
+    fclose(fp);
+
+    return 0;
+}
