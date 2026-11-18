@@ -1,0 +1,51 @@
+#include <stdio.h>
+#include <string.h>
+
+#define FILE_NAME "student_records.txt"
+
+static void trim_newline(char *s) {
+    s[strcspn(s, "\r\n")] = '\0';
+}
+
+int main(void) {
+    char idNumber[32];
+    char name[100];
+    char section[32];
+    char choice[16];
+    int again = 1;
+
+    while (again) {
+        printf("Enter Student Number: ");
+        fgets(idNumber, sizeof(idNumber), stdin);
+        trim_newline(idNumber);
+
+        printf("Enter Complete Name: ");
+        fgets(name, sizeof(name), stdin);
+        trim_newline(name);
+
+        printf("Enter Section: ");
+        fgets(section, sizeof(section), stdin);
+        trim_newline(section);
+
+        FILE *fp = fopen(FILE_NAME, "a");
+        if (fp == NULL) {
+            printf("\nError: could not open %s\n", FILE_NAME);
+            return 1;
+        }
+
+        fprintf(fp, "ID Number: %s\n", idNumber);
+        fprintf(fp, "Complete Name: %s\n", name);
+        fprintf(fp, "Section: %s\n\n", section);
+        fclose(fp);
+
+        printf("\nRecord added and saved successfully.\n\n");
+
+        printf("Add another student? [Enter 1 for Yes, 0 for No]: ");
+        fgets(choice, sizeof(choice), stdin);
+        again = (choice[0] == '1');
+        printf("\n");
+    }
+
+    printf("All student records have been saved.\n");
+    return 0;
+}
